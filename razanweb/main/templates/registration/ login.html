@@ -1,0 +1,15 @@
+<!-- memanggil base html  -->
+{% extends 'main/base.html' %}
+<!-- block inheritance untuk judul -->
+{% block judul%}Login{% endblock %}
+{% load crispy_forms_tags %}
+{% block konten %}
+ <!-- disini tag form login  -->
+    <form method="post">
+        {% csrf_token %}{{form|crispy}}
+        <p>Belum Punya akun maseh? Daftar <a href="/daftar">disini !</a></p>
+        <button class="btn btn-primary" type="submit">Login</button>
+    </form>
+<!-- disini tag form login  -->
+{% endblock %}
+

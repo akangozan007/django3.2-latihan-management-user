@@ -7,4 +7,10 @@ def home(request):
     }
     return render(request, 'main/home.html', context)
 
+def login(request):
+    context = {
+        'judul' : 'Laman Login',
+    }
+    return render(request, 'registration/login.html', context)
+
 
