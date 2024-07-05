@@ -79,11 +79,29 @@ WSGI_APPLICATION = 'razanweb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         # 'ENGINE': 'django.db.backends.sqlite3',
+#         # 'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE':'django.db.backends.mysql',
+#         'NAME':'razanweb',
+#         'USER':'3d35xN3E22GZxRV.root',
+#         'HOST':'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
+#         'PORT':'4000',
+#         'CA':'/etc/ssl/certs/ca-certificates.crt'
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+       'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'blkn4chgjuw17db6dofp',
+        'USER': 'uvlnfdxnu6kigjaa',
+        'PASSWORD': 'PbokbzYwgvkROdA7qTO1',
+        'HOST': 'blkn4chgjuw17db6dofp-mysql.services.clever-cloud.com',
+        'PORT': 3306,
+        
+    },
 }
 
 
