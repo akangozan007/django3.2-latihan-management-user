@@ -1,11 +1,22 @@
 # from django.conf.urls import url
-from django.urls import path
+from django.urls import path, re_path
+
+from django.contrib.auth import views as auth_views
+
 from django.contrib import admin
+# from django.contrib.auth.views import *
+from django.conf.urls import url
+# import django.contrib.auth
 # memanggil segugusan function views didalam main app views
-from . import views
+# from .views import CustomLoginView
+from . import views as views_main
+
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('/home', views.home, name='home'),
-    # path('login/', views_login.login, name='login')
+    path('', views_main.home, name='home'),
+    path('home/', views_main.home, name='home'),
+    # path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('login/', views_main.LoginView.as_view(), name='login'),
+ 
 ]
+

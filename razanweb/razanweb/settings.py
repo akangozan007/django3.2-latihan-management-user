@@ -33,20 +33,29 @@ ALLOWED_HOSTS = ['10.11.12.3']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    # 'django.contrib.auth.urls',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # menambahkan main app
     'main.apps.MainConfig',
+    'razanweb',
     # 'main',
     # menambahkan app ekstension UI dari Bootstrap
-    'crispy_forms',
-    'crispy_bootstrap5',
+    # 'crispy_forms',
+    # 'crispy_bootstrap5',
+    'crispy-bootstrap5',
+    'django-crispy-forms',
 ]
 
+# CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+# CRISPY_TEMPLATE_PACKS = "bootstrap5"
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-CRISPY_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -82,8 +91,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # 'DIRS': [BASE_DIR / "templates"],  # Pastikan direktori templates di sini
-        'DIRS':[ 'templates', 'main/templates/registration',
-        ],
+        'DIRS':[os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -176,7 +184,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_URL = '/accounts?next=/login/'
-LOGOUT_URL = '/accounts?next=/login/'
-LOGIN_REDIRECT_URL = '/home'
-LOGOUT_REDIRECT_URL = '/accounts?next=/login/'
+# LOGIN_URL = '/accounts?next=/login/'
+# LOGOUT_URL = '/accounts?next=/login/'
+# LOGIN_REDIRECT_URL = '/home'
+# LOGOUT_REDIRECT_URL = '/accounts?nct=/login/'
