@@ -43,10 +43,8 @@ INSTALLED_APPS = [
     'razanweb',
     # 'main',
     # menambahkan app ekstension UI dari Bootstrap
-    # 'crispy_forms',
-    # 'crispy_bootstrap5',
-    'crispy-bootstrap5',
-    'django-crispy-forms',
+    "crispy_forms",
+    "crispy_bootstrap5",
 ]
 
 # CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
