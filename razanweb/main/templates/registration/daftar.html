@@ -1,0 +1,21 @@
+<!-- memanggil base html  -->
+{% extends 'main/base.html' %}
+{% load static %}
+<!-- block inheritance untuk judul -->
+{% block judul%}Daftar Akun{% endblock %}
+{% load crispy_forms_tags %}
+{% block konten %}
+ <!-- disini tag form login  -->
+ <main class="form-signin w-100 m-auto">
+    <div class="container">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            <form method="post">
+                {% csrf_token %}{{form|crispy}}
+                <p>Punya Akun? <a href="/login">Login</a></p>
+                <button class="btn btn-primary w-100" type="submit">Daftar</button>
+            </form>
+    </div>
+</main>
+<!-- disini tag form login  -->
+{% endblock %}
+
