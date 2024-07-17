@@ -3,11 +3,11 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout as auth_logout
 from django.conf import settings
 from django.http import HttpResponse
-
-# import forms pendaftaran
 from .forms import FormPendaftaran
-# Create your views here.
 from django.contrib.auth import login as auth_login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url="/login")
 
 def home(request):
     context = {
@@ -15,14 +15,12 @@ def home(request):
     }
     return render(request, 'main/home.html', context)
 
-def login(request):
-    class CustomLoginView(LoginView):
-        template_name = 'registration/login.html'
-        redirect_authenticated_user = True
-        
-        def get(self, request, *args, **kwargs):
-            return render(request, self.template_name)
+class CustomLoginView(LoginView):
+    template_name = 'registration/login.html'
+    # title = "Laman Login"
+    redirect_authenticated_user = True
 
+def login(request):
     return CustomLoginView.as_view()(request)
 
 def dashboard(request):
@@ -48,4 +46,4 @@ def daftar(request):
     else:
         form = FormPendaftaran()
     
-    return render(request, 'registration/daftar.html', {'form': form})
+    return render(request, 'registration/daftar.html', {'form': form, 'judul': 'Form Pendaftaran'})

@@ -2,7 +2,9 @@
 {% extends 'main/base.html' %}
 {% load static %}
 <!-- block inheritance untuk judul -->
-{% block judul%}Daftar Akun{% endblock %}
+{% block title %}
+<title>{{ judul }}</title>
+{% endblock %}
 {% load crispy_forms_tags %}
 {% block konten %}
  <!-- disini tag form login  -->

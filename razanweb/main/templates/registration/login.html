@@ -1,21 +1,19 @@
-<!-- memanggil base html  -->
 {% extends 'main/base.html' %}
 {% load static %}
-<!-- block inheritance untuk judul -->
-{% block title %} {{ judul }} {% endblock %}
+
+<title>{{ title }}</title>
+
 {% load crispy_forms_tags %}
 {% block konten %}
- <!-- disini tag form login  -->
- <main class="form-signin w-100 m-auto">
+<main class="form-signin w-100 m-auto">
  <div class="container">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <h1 class="h3 mb-3 fw-normal">{{ title }}</h1>
+    <h1 class="h3 mb-3 fw-normal">{{ judul }}</h1>
     <form method="post">
-        {% csrf_token %}{{form|crispy}}
+        {% csrf_token %}{{ form|crispy }}
         <p class="text-center">Belum Punya akun maseh? <br> Daftar <a href="/daftar">disini !</a></p>
         <button class="btn btn-primary w-100" type="submit">Login</button>
     </form>
 </div>
 </main>
-<!-- disini tag form login  -->
 {% endblock %}
-
