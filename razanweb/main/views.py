@@ -14,15 +14,7 @@ def home(request):
     context = {
         'judul': 'Beranda',
     }
-    post = Post.objects.all()
-
-    # aksi hapus
-    if request.method == "DELETE":
-        post_id = request.DELETE.get("post-id")
-        print(post_id)
-
-    return render(request, 'main/home.html', {"posts":post})
-
+    return render(request, 'main/home.html', context)
 
 class CustomLoginView(LoginView):
     template_name = 'registration/login.html'
@@ -41,7 +33,12 @@ def dashboard(request):
     if not request.user.is_authenticated:
         return redirect("/login")
     else : 
-        return render(request, 'main/dashboard.html', context)
+        post = Post.objects.all()
+        # aksi hapus
+        if request.method == "DELETE":
+            post_id = request.DELETE.get("post-id")
+            print(post_id)
+        return render(request, 'main/dashboard.html', {"posts":post})
    
 def Logout(request):
     auth_logout(request)
