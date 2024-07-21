@@ -108,18 +108,6 @@ WSGI_APPLICATION = 'razanweb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         # 'ENGINE': 'django.db.backends.sqlite3',
-#         # 'NAME': BASE_DIR / 'db.sqlite3',
-#         'ENGINE':'django.db.backends.mysql',
-#         'NAME':'razanweb',
-#         'USER':'3d35xN3E22GZxRV.root',
-#         'HOST':'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
-#         'PORT':'4000',
-#         'CA':'/etc/ssl/certs/ca-certificates.crt'
-#     }
-# }
 
 DATABASES = {
     'default': {
@@ -132,6 +120,17 @@ DATABASES = {
         
     },
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'django_user_management',  # Ganti dengan nama database Anda
+#         'USER': 'root',  # Ganti dengan nama pengguna MySQL Anda
+#         'PASSWORD': '',  # Ganti dengan kata sandi MySQL Anda
+#         'HOST': '127.0.0.1',  # Gunakan localhost atau 127.0.0.1
+#         'PORT': '3306',  # Port default MySQL di XAMPP
+#     }
+# }
 
 
 # Password validation
@@ -184,3 +183,4 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/dashboard'
 LOGOUT_REDIRECT_URL = '/login'
+LOGIN_URL = '/login'

@@ -3,32 +3,46 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout as auth_logout
 from django.conf import settings
 from django.http import HttpResponse
-from .forms import FormPendaftaran
+from .forms import FormPendaftaran, PostinganForm
 from django.contrib.auth import login as auth_login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from .models import Post
 
-@login_required(login_url="/login")
+
 
 def home(request):
     context = {
         'judul': 'Beranda',
     }
-    return render(request, 'main/home.html', context)
+    post = Post.objects.all()
+
+    # aksi hapus
+    if request.method == "DELETE":
+        post_id = request.DELETE.get("post-id")
+        print(post_id)
+
+    return render(request, 'main/home.html', {"posts":post})
+
 
 class CustomLoginView(LoginView):
     template_name = 'registration/login.html'
-    # title = "Laman Login"
     redirect_authenticated_user = True
+
 
 def login(request):
     return CustomLoginView.as_view()(request)
 
+
+@login_required(login_url="/login/")
 def dashboard(request):
     context = {
         'judul': 'Dashboard',
     }
-    return render(request, 'main/dashboard.html', context)
-
+    if not request.user.is_authenticated:
+        return redirect("/login")
+    else : 
+        return render(request, 'main/dashboard.html', context)
+   
 def Logout(request):
     auth_logout(request)
     return redirect('/login')
@@ -43,7 +57,30 @@ def daftar(request):
             user = form.save()
             auth_login(request, user)
             return redirect('/dashboard')
+           
     else:
         form = FormPendaftaran()
     
     return render(request, 'registration/daftar.html', {'form': form, 'judul': 'Form Pendaftaran'})
+
+# membuat postingan
+
+@login_required(login_url="/login/")
+def buat_posting(request):
+    if request.method == 'POST':
+        form = PostinganForm(request.POST)
+        if form.is_valid():
+            # secara default form.save(commit=True)
+            # ini agar melarang user sembarang mengcommit
+            post = form.save(commit=False)
+            post.author = request.user
+            # menyimpan postingan ke dalam database
+            post.save()
+            return redirect('/dashboard')  # Mengarahkan pengguna ke dashboard setelah postingan berhasil dibuat
+    else:
+        form = PostinganForm()
+
+    return render(request, 'main/buatposting.html', {"form": form})
+          
+        
+

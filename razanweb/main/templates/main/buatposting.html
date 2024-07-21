@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<title>{{ title }}</title>
+
+{% load crispy_forms_tags %}
+{% block konten %}
+<main class="form-signin w-100 m-auto">
+ <div class="container">
+    <h1 class="h3 mb-3 fw-normal">{{ title }}</h1>
+    <h1 class="h3 mb-3 fw-normal">{{ judul }}</h1>
+    <h3>posting</h3>
+    <form method="post">
+        {% csrf_token %}{{ form|crispy }}
+        <!-- <p class="text-center">Belum Punya akun maseh? <br> Daftar <a href="/daftar">disini !</a></p> -->
+
+        <button class="btn btn-primary w-100" type="submit">post</button>
+    </form>
+</div>
+</main>
+{% endblock %}

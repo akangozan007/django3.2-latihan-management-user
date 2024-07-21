@@ -19,6 +19,7 @@ urlpatterns = [
     path('dashboard/', views_main.dashboard, name='dashboard'),
     path('logout/', views_main.Logout, name='Logout'),
     path('daftar/', views_main.daftar, name='daftar'),
+    path('buat-postingan/', views_main.buat_posting, name='buat_posting'),
  
 ]
 
