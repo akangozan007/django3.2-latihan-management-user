@@ -16,10 +16,11 @@
         </div>
         <div>
         <!-- aksi untuk delete post -->
-            {% if user == request.user %}
-                <form method="POST">
+            {% if user and post.author == request.user %}
+                <form method="post">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger" name="post-id" value='{{ post.id }}'>Delete</button>
+                    <p>{{ context.respon }}</p>
                 </form>
             {% endif %}
         <!-- aksi untuk delete post -->
